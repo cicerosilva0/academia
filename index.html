@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="nav-container">
+        <button class="nav-button" data-treino="treinoA">Treino A</button>
+        <button class="nav-button" data-treino="treinoB">Treino B</button>
+        <button class="nav-button" data-treino="treinoC">Treino C</button>
+    </div>
+
+    <div id="treinoA" class="treino-section">
+        <h2>Treino A <span class="timer" id="timerA">01:00</span></h2>
+        <button class="start-timer-button" data-timer="timerA">Iniciar Cronômetro</button>
+        <div class="progress-container">
+            <progress id="progressA" value="0" max="100"></progress>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercício</th>
+                    <th>S</th>
+                    <th>REP</th>
+                    <th>Kg</th>
+                    <th>Feito</th>
+                    <th>Int</th>
+                </tr>
+            </thead>
+            <tbody id="treinoA-body"></tbody>
+        </table>
+    </div>
+
+    <div id="treinoB" class="treino-section">
+        <h2>Treino B <span class="timer" id="timerB">01:00</span></h2>
+        <button class="start-timer-button" data-timer="timerB">Iniciar Cronômetro</button>
+        <div class="progress-container">
+            <progress id="progressB" value="0" max="100"></progress>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercício</th>
+                    <th>S</th>
+                    <th>REP</th>
+                    <th>Kg</th>
+                    <th>Feito</th>
+                    <th>Int</th>
+                </tr>
+            </thead>
+            <tbody id="treinoB-body"></tbody>
+        </table>
+    </div>
+
+    <div id="treinoC" class="treino-section">
+        <h2>Treino C <span class="timer" id="timerC">01:00</span></h2>
+        <button class="start-timer-button" data-timer="timerC">Iniciar Cronômetro</button>
+        <div class="progress-container">
+            <progress id="progressC" value="0" max="100"></progress>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exercício</th>
+                    <th>S</th>
+                    <th>REP</th>
+                    <th>Kg</th>
+                    <th>Feito</th>
+                    <th>Int</th>
+                </tr>
+            </thead>
+            <tbody id="treinoC-body"></tbody>
+        </table>
+    </div>
+
+    <div class="export-container">
+        <button class="export-button" onclick="exportToExcel()">Exportar para Excel</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
