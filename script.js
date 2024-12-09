@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { exercicio: 'Rosca Direta (B)', series: 4, repeticoes: '20', peso: '', feito: false, intervalo: "1'" },
             { exercicio: 'ABS Supra Corda', series: 4, repeticoes: '20-18-15-12', peso: '', feito: false, intervalo: "1'" },
         ]
-        };
+    };
 
     const renderTable = (data, tableBodyId, progressId) => {
         const tableBody = document.getElementById(tableBodyId);
@@ -105,18 +105,25 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('[data-treino="treinoA"]').click();
 });
 
+let timers = {}; // Armazenar cronômetros para evitar duplicação
+
 function startTimer(timerId) {
+    if (timers[timerId]) {
+        return; // Se o cronômetro já estiver rodando, não faz nada
+    }
+
     const timerElement = document.getElementById(timerId);
     let totalTime = 60;
 
-    const interval = setInterval(() => {
+    timers[timerId] = setInterval(() => {
         const minutes = Math.floor(totalTime / 60);
         const seconds = totalTime % 60;
         timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         totalTime--;
 
         if (totalTime < 0) {
-            clearInterval(interval);
+            clearInterval(timers[timerId]);
+            delete timers[timerId]; // Remover o cronômetro da lista
             alert(`Cronômetro ${timerId} finalizado!`);
         }
     }, 1000);
