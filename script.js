@@ -103,28 +103,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelector('[data-treino="treinoA"]').click();
-});
 
-let timers = {}; // Armazenar cronômetros para evitar duplicação
+    // Cronômetro
+    let timers = {}; // Para evitar múltiplos timers
 
-function startTimer(timerId) {
-    if (timers[timerId]) {
-        return; // Se o cronômetro já estiver rodando, não faz nada
+    function startTimer(timerId) {
+        if (timers[timerId]) return; // Evita múltiplos timers
+
+        const timerElement = document.getElementById(timerId);
+        let totalTime = 60;
+
+        timers[timerId] = setInterval(() => {
+            const minutes = Math.floor(totalTime / 60);
+            const seconds = totalTime % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            totalTime--;
+
+            if (totalTime < 0) {
+                clearInterval(timers[timerId]);
+                delete timers[timerId];
+                alert(`Cronômetro ${timerId} finalizado!`);
+            }
+        }, 1000);
     }
 
-    const timerElement = document.getElementById(timerId);
-    let totalTime = 60;
-
-    timers[timerId] = setInterval(() => {
-        const minutes = Math.floor(totalTime / 60);
-        const seconds = totalTime % 60;
-        timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        totalTime--;
-
-        if (totalTime < 0) {
-            clearInterval(timers[timerId]);
-            delete timers[timerId]; // Remover o cronômetro da lista
-            alert(`Cronômetro ${timerId} finalizado!`);
-        }
-    }, 1000);
-}
+    window.startTimer = startTimer;
+});
