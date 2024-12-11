@@ -180,19 +180,32 @@ progress::-webkit-progress-value {
         max-width: 100%;
     }
 
-    table th, table td {
-        font-size: 14px; /* Diminui o tamanho da fonte das células */
+    table {
+        display: block; /* Torna a tabela em uma estrutura de bloco */
+        overflow-x: auto; /* Permite rolagem horizontal */
+    }
+
+    thead {
+        display: none; /* Remove cabeçalhos em dispositivos móveis */
+    }
+
+    tbody, tr {
+        display: block; /* Alinha linhas como blocos */
+        margin-bottom: 1rem;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between; /* Cria espaço entre rótulo e valor */
         padding: 8px;
+        border: 1px solid #ddd;
     }
 
-    .timer-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .start-timer-button {
-        padding: 8px 10px;
-        font-size: 14px;
+    td::before {
+        content: attr(data-label); /* Usa os atributos como rótulos */
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: 10px;
     }
 }
 
@@ -209,9 +222,13 @@ progress::-webkit-progress-value {
         font-size: 16px; /* Ajusta o tamanho da fonte do cronômetro */
     }
 
-    table th, table td {
-        font-size: 12px; /* Diminui ainda mais o tamanho da fonte da tabela */
+    td {
         padding: 6px;
+        font-size: 12px;
+    }
+
+    td::before {
+        margin-right: 5px;
     }
 
     .start-timer-button {
